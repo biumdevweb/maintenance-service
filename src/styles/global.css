@@ -1,0 +1,584 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom CSS variables per design system B2B */
+:root {
+  /* Colors basati su psychology research */
+  --color-navy-700: #1E3A8A;
+  --color-sky-500: #0ea5e9;
+  --color-orange-600: #EA580C;
+  --color-gray-700: #374151;
+  
+  /* Spacing system */
+  --section-spacing: 5rem;
+  --container-padding: 1rem;
+  
+  /* Animation durations ottimizzate per UX */
+  --animation-fast: 200ms;
+  --animation-normal: 300ms;
+  --animation-slow: 500ms;
+  
+  /* Border radius per design system */
+  --radius-sm: 0.375rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.75rem;
+  --radius-xl: 1rem;
+}
+
+/* Base styles ottimizzati per B2B */
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+  }
+  
+  body {
+    font-family: 'Lato', system-ui, -apple-system, sans-serif;
+    font-optical-sizing: auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Typography ottimizzata per leggibilità B2B */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    font-weight: 700;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+  }
+  
+  h1 {
+    @apply text-4xl md:text-5xl lg:text-6xl;
+  }
+  
+  h2 {
+    @apply text-3xl md:text-4xl lg:text-5xl;
+  }
+  
+  h3 {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+  
+  p {
+    @apply text-lg leading-relaxed;
+    max-width: 65ch; /* Optimal reading width */
+  }
+  
+  /* Links ottimizzati per conversion */
+  a {
+    @apply transition-all duration-200 ease-in-out;
+  }
+  
+  /* Focus styles per accessibility */
+  :focus-visible {
+    @apply outline-2 outline-sky-500 outline-offset-2;
+  }
+  
+  /* Selection color branding */
+  ::selection {
+    @apply bg-sky-500 text-white;
+  }
+  
+  /* Scrollbar styling per professional appearance */
+  ::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  ::-webkit-scrollbar-track {
+    @apply bg-gray-100;
+  }
+  
+  ::-webkit-scrollbar-thumb {
+    @apply bg-gray-400 rounded-full;
+  }
+  
+  ::-webkit-scrollbar-thumb:hover {
+    @apply bg-gray-500;
+  }
+}
+
+/* Component styles per design system B2B */
+@layer components {
+  /* Container responsive */
+  .container {
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+  }
+  
+  /* Section spacing consistente */
+  .section {
+    @apply py-16 lg:py-24;
+  }
+  
+  .section-sm {
+    @apply py-8 lg:py-12;
+  }
+  
+  .section-lg {
+    @apply py-20 lg:py-32;
+  }
+  
+  /* Button components ottimizzati per conversion */
+  .btn {
+    @apply inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-lg transition-all duration-200 ease-in-out focus:outline-none focus:ring-2 focus:ring-offset-2;
+  }
+  
+  .btn-primary {
+    @apply bg-orange-600 text-white hover:bg-orange-700 hover:-translate-y-0.5 shadow-cta hover:shadow-cta-hover focus:ring-orange-500;
+  }
+  
+  .btn-secondary {
+    @apply bg-navy-700 text-white hover:bg-navy-800 hover:-translate-y-0.5 shadow-medium hover:shadow-strong focus:ring-navy-500;
+  }
+  
+  .btn-outline {
+    @apply border-navy-700 text-navy-700 bg-white hover:bg-navy-700 hover:text-white hover:-translate-y-0.5 focus:ring-navy-500;
+  }
+  
+  .btn-ghost {
+    @apply text-navy-700 hover:bg-navy-50 hover:text-navy-800 focus:ring-navy-500;
+  }
+  
+  .btn-sm {
+    @apply px-4 py-2 text-sm;
+  }
+  
+  .btn-lg {
+    @apply px-8 py-4 text-lg;
+  }
+  
+  /* Card components per content organization */
+  .card {
+    @apply bg-white rounded-xl shadow-soft border border-gray-200 overflow-hidden;
+  }
+  
+  .card-hover {
+    @apply transition-all duration-300 ease-in-out hover:shadow-medium hover:-translate-y-1;
+  }
+  
+  .card-header {
+    @apply p-6 border-b border-gray-200;
+  }
+  
+  .card-body {
+    @apply p-6;
+  }
+  
+  .card-footer {
+    @apply p-6 border-t border-gray-200 bg-gray-50;
+  }
+  
+  /* Badge components per trust signals */
+  .badge {
+    @apply inline-flex items-center px-3 py-1 rounded-full text-xs font-medium;
+  }
+  
+  .badge-success {
+    @apply bg-success-100 text-success-800;
+  }
+  
+  .badge-primary {
+    @apply bg-sky-100 text-sky-800;
+  }
+  
+  .badge-warning {
+    @apply bg-orange-100 text-orange-800;
+  }
+  
+  .badge-outline {
+    @apply border border-gray-300 text-gray-700 bg-white;
+  }
+  
+  /* Form components ottimizzati per conversion */
+  .form-input {
+    @apply w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky-500 focus:border-transparent transition-all duration-200;
+  }
+  
+  .form-label {
+    @apply block text-sm font-medium text-gray-700 mb-2;
+  }
+  
+  .form-error {
+    @apply text-red-600 text-sm mt-1;
+  }
+  
+  /* Gradient backgrounds per hero sections */
+  .bg-gradient-hero {
+    /* Sfondo con fallback colore e immagine */
+    background-color: #1E3A8A;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/hero-background.jpg?v=20241007');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* Forziamo il caricamento immediato */
+    background-attachment: scroll;
+    /* Preveniamo problemi di cache */
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  /* Correzione per il pattern SVG nella hero section */
+  .bg-gradient-hero .absolute.inset-0 {
+    /* Riduciamo ulteriormente l'opacità del pattern per far vedere l'immagine sottostante */
+    opacity: 0.02 !important;
+    /* Assicuriamoci che il pattern non copra completamente l'immagine */
+    mix-blend-mode: overlay;
+    /* Forziamo lo stile del pattern */
+    background-image: url('data:image/svg+xml,%3Csvg%20width%3D%2260%22%20height%3D%2260%22%20viewBox%3D%220%200%2060%2060%22%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cg%20fill%3D%22none%22%20fill-rule%3D%22evenodd%22%3E%3Cg%20fill%3D%22%23ffffff%22%20fill-opacity%3D%220.4%22%3E%3Cpath%20d%3D%22M36%2034v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6%2034v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6%204V0H4v4H0v2h4v4h2V6h4V4H6z%22/%3E%3C/g%3E%3C/g%3E%3C/svg%3E') !important;
+  }
+  
+  /* Assicuriamoci che il contenuto della hero section sia sopra l'immagine di sfondo */
+  .bg-gradient-hero .container {
+    position: relative;
+    z-index: 10;
+  }
+  
+  /* Assicuriamoci che il body non interferisca con la hero section */
+  body {
+    background: transparent;
+  }
+  
+  /* Forziamo il precaricamento dell'immagine di sfondo con cache-busting */
+  .bg-gradient-hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('/images/hero-background.jpg?v=20241007');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -1;
+    opacity: 0;
+    pointer-events: none;
+    /* Forziamo il caricamento */
+    will-change: opacity;
+  }
+  
+  /* Stile della hero section */
+  section.bg-gradient-hero {
+    background-color: #1E3A8A;
+    background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('/images/hero-background.jpg?v=20241007');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: scroll;
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+  }
+  
+  .bg-gradient-cta {
+    @apply bg-gradient-to-r from-orange-600 to-orange-500;
+  }
+  
+  /* Text utilities per B2B copywriting */
+  .text-hero {
+    @apply text-4xl md:text-5xl lg:text-6xl font-bold leading-tight;
+  }
+  
+  .text-subhero {
+    @apply text-xl md:text-2xl text-gray-600 leading-relaxed;
+  }
+  
+  .text-benefit {
+    @apply text-lg text-gray-700 leading-relaxed;
+  }
+  
+  .text-stat {
+    @apply text-3xl md:text-4xl font-bold text-navy-700;
+  }
+  
+  /* Animation utilities per micro-interactions */
+  .animate-fade-in {
+    animation: fadeIn var(--animation-normal) ease-in-out;
+  }
+  
+  .animate-slide-up {
+    animation: slideUp var(--animation-normal) ease-out;
+  }
+  
+  .animate-slide-in-right {
+    animation: slideInRight var(--animation-normal) ease-out;
+  }
+  
+  .animate-bounce-in {
+    animation: bounceIn var(--animation-slow) ease-out;
+  }
+  
+  /* Loading states */
+  .loading {
+    @apply relative overflow-hidden;
+  }
+  
+  .loading::after {
+    content: '';
+    @apply absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent animate-pulse;
+  }
+  
+  /* Trust indicators */
+  .trust-badge {
+    @apply flex items-center space-x-2 text-sm text-gray-600;
+  }
+  
+  .trust-badge-icon {
+    @apply w-5 h-5 text-success-500;
+  }
+}
+
+/* Utility classes per performance e UX */
+@layer utilities {
+  /* Text utilities per readability */
+  .text-balance {
+    text-wrap: balance;
+  }
+  
+  .text-pretty {
+    text-wrap: pretty;
+  }
+  
+  /* Spacing utilities per section layout */
+  .space-y-section {
+    @apply space-y-16 lg:space-y-24;
+  }
+  
+  .space-y-card {
+    @apply space-y-6;
+  }
+  
+  /* Animation utilities */
+  .transition-transform-custom {
+    @apply transition-transform duration-200 ease-in-out;
+  }
+  
+  .transition-all-slow {
+    @apply transition-all duration-500 ease-in-out;
+  }
+  
+  /* Focus utilities per accessibility */
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-sky-500 focus:ring-offset-2;
+  }
+  
+  /* Hover utilities per interactive elements */
+  .hover-lift {
+    @apply hover:-translate-y-1 transition-transform-custom;
+  }
+  
+  .hover-scale {
+    @apply hover:scale-105 transition-transform-custom;
+  }
+  
+  /* Shadow utilities per depth */
+  .shadow-interactive {
+    @apply shadow-md hover:shadow-lg transition-shadow duration-200 ease-in-out;
+  }
+  
+  /* Responsive text utilities */
+  .responsive-text {
+    @apply text-lg md:text-xl lg:text-2xl;
+  }
+  
+  .responsive-heading {
+    @apply text-2xl md:text-3xl lg:text-4xl;
+  }
+}
+
+/* Custom animations basate su UX research */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    opacity: 0;
+    transform: scale(0.3);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+  70% {
+    transform: scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Scroll-triggered animations per storytelling */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.scroll-animate.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Stagger animations per lists */
+.stagger-item {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.4s ease-out;
+}
+
+.stagger-item.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.stagger-item:nth-child(1) { transition-delay: 0.1s; }
+.stagger-item:nth-child(2) { transition-delay: 0.2s; }
+.stagger-item:nth-child(3) { transition-delay: 0.3s; }
+.stagger-item:nth-child(4) { transition-delay: 0.4s; }
+.stagger-item:nth-child(5) { transition-delay: 0.5s; }
+
+/* Performance optimizations */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .btn {
+    @apply border-2 border-current;
+  }
+  
+  .card {
+    @apply border-2 border-gray-400;
+  }
+}
+
+/* Print styles */
+@media print {
+  .header,
+  .footer,
+  .btn,
+  nav {
+    display: none !important;
+  }
+  
+  .card {
+    @apply shadow-none border border-gray-300;
+  }
+  
+  body {
+    @apply text-black bg-white;
+  }
+}
+
+/* Dark mode support (future-proof) */
+@media (prefers-color-scheme: dark) {
+  .auto-dark {
+    @apply bg-gray-900 text-white;
+  }
+  
+  .auto-dark .card {
+    @apply bg-gray-800 border-gray-700;
+  }
+  
+  .auto-dark .form-input {
+    @apply bg-gray-800 border-gray-600 text-white;
+  }
+}
+
+/* Custom scrollbar per Firefox */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgb(156 163 175) rgb(243 244 246);
+}
+
+/* Optimize images per performance */
+img {
+  @apply max-w-full h-auto;
+}
+
+/* Table styling per pricing tables */
+.table-pricing {
+  @apply w-full border-collapse;
+}
+
+.table-pricing th {
+  @apply bg-gray-50 px-6 py-4 text-left text-sm font-medium text-gray-700;
+}
+
+.table-pricing td {
+  @apply px-6 py-4 text-sm text-gray-900 border-t border-gray-200;
+}
+
+/* Code blocks per technical documentation */
+.code-block {
+  @apply bg-gray-900 text-gray-100 p-4 rounded-lg overflow-x-auto font-mono text-sm;
+}
+
+/* Blockquote styling per testimonials */
+.blockquote-testimonial {
+  @apply border-l-4 border-sky-500 pl-6 italic text-gray-700;
+}
+
+/* List styling per features */
+.list-features {
+  @apply space-y-3;
+}
+
+.list-features li {
+  @apply flex items-start space-x-3;
+}
+
+.list-features li::before {
+  content: '✓';
+  @apply text-success-500 font-bold mt-1;
+}
+
+/* Responsive grid utilities */
+.grid-responsive {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6;
+}
+
+.grid-responsive-2 {
+  @apply grid grid-cols-1 md:grid-cols-2 gap-6;
+}
+
+.grid-responsive-4 {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4;
+}

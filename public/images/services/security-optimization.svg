@@ -1,0 +1,24 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="30" fill="#ea580c" opacity="0.1"/>
+  <circle cx="32" cy="32" r="30" stroke="#ea580c" stroke-width="2" fill="none"/>
+  
+  <!-- Shield shape -->
+  <path d="M 32 8 L 12 18 L 12 32 C 12 42, 20 50, 32 56 C 44 50, 52 42, 52 32 L 52 18 Z" 
+        fill="white" stroke="#ea580c" stroke-width="2"/>
+  
+  <!-- Lock inside shield -->
+  <rect x="26" y="28" width="12" height="10" rx="2" fill="#ea580c"/>
+  <path d="M 28 28 L 28 24 C 28 20, 30 18, 32 18 C 34 18, 36 20, 36 24 L 36 28" 
+        stroke="#ea580c" stroke-width="2" fill="none"/>
+  <circle cx="32" cy="32" r="1.5" fill="white"/>
+  
+  <!-- Check mark -->
+  <path d="M 24 40 L 28 44 L 40 32" stroke="#10b981" stroke-width="3" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+  
+  <!-- Small security dots -->
+  <circle cx="20" cy="24" r="2" fill="#fbbf24"/>
+  <circle cx="44" cy="24" r="2" fill="#fbbf24"/>
+  <circle cx="20" cy="40" r="2" fill="#fbbf24"/>
+  <circle cx="44" cy="40" r="2" fill="#fbbf24"/>
+</svg>

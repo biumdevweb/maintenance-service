@@ -1,0 +1,40 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="30" fill="#8b5cf6" opacity="0.1"/>
+  <circle cx="32" cy="32" r="30" stroke="#8b5cf6" stroke-width="2" fill="none"/>
+  
+  <!-- Speedometer gauge -->
+  <path d="M 32 16 A 16 16 0 0 1 48 32 L 32 32 Z" fill="#10b981" opacity="0.3"/>
+  <path d="M 32 16 A 16 16 0 0 1 40 18 L 32 32 Z" fill="#10b981" opacity="0.5"/>
+  <path d="M 32 16 A 16 16 0 0 1 36 17 L 32 32 Z" fill="#10b981" opacity="0.7"/>
+  
+  <!-- Gauge outline -->
+  <circle cx="32" cy="32" r="16" fill="white" stroke="#8b5cf6" stroke-width="2"/>
+  
+  <!-- Gauge marks -->
+  <line x1="32" y1="16" x2="32" y2="20" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/>
+  <line x1="48" y1="32" x2="44" y2="32" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/>
+  <line x1="32" y1="48" x2="32" y2="44" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/>
+  <line x1="16" y1="32" x2="20" y2="32" stroke="#8b5cf6" stroke-width="2" stroke-linecap="round"/>
+  
+  <!-- Diagonal marks -->
+  <line x1="43" y1="21" x2="40" y2="24" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="43" y1="43" x2="40" y2="40" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="21" y1="43" x2="24" y2="40" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round"/>
+  <line x1="21" y1="21" x2="24" y2="24" stroke="#8b5cf6" stroke-width="1.5" stroke-linecap="round"/>
+  
+  <!-- Needle -->
+  <line x1="32" y1="32" x2="38" y2="24" stroke="#ef4444" stroke-width="2" stroke-linecap="round"/>
+  <circle cx="32" cy="32" r="3" fill="#8b5cf6"/>
+  
+  <!-- Speed indicators -->
+  <text x="32" y="14" text-anchor="middle" font-family="Arial" font-size="8" fill="#8b5cf6">FAST</text>
+  <text x="50" y="35" text-anchor="middle" font-family="Arial" font-size="6" fill="#8b5cf6">100</text>
+  <text x="14" y="35" text-anchor="middle" font-family="Arial" font-size="6" fill="#8b5cf6">0</text>
+  
+  <!-- Small boost indicators -->
+  <circle cx="24" cy="20" r="2" fill="#fbbf24"/>
+  <circle cx="40" cy="20" r="2" fill="#fbbf24"/>
+  <circle cx="24" cy="44" r="2" fill="#fbbf24"/>
+  <circle cx="40" cy="44" r="2" fill="#fbbf24"/>
+</svg>

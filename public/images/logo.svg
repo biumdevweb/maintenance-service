@@ -1,0 +1,53 @@
+<svg width="200" height="48" viewBox="0 0 200 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Logo per Maintenance Service -->
+  <defs>
+    <linearGradient id="logoGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1E3A8A;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EA580C;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#f97316;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Icon part -->
+  <g transform="translate(0, 0)">
+    <!-- Shield background -->
+    <path d="M24 4L12 10V20C12 26.63 17.37 32 24 32C30.63 32 36 26.63 36 20V10L24 4Z" 
+          fill="url(#logoGradient)"/>
+    
+    <!-- Checkmark -->
+    <path d="M18 20L22 24L30 14" 
+          stroke="white" 
+          stroke-width="2.5" 
+          stroke-linecap="round" 
+          stroke-linejoin="round" 
+          fill="none"/>
+    
+    <!-- Maintenance gear -->
+    <circle cx="34" cy="14" r="6" fill="url(#accentGradient)"/>
+    <path d="M34 11V17M31 14H37" 
+          stroke="white" 
+          stroke-width="2" 
+          stroke-linecap="round"/>
+  </g>
+  
+  <!-- Text part -->
+  <g transform="translate(48, 0)">
+    <!-- Maintenance -->
+    <text x="0" y="20" font-family="Inter, sans-serif" font-size="18" font-weight="700" fill="#1E3A8A">
+      Maintenance
+    </text>
+    
+    <!-- Service -->
+    <text x="0" y="38" font-family="Inter, sans-serif" font-size="18" font-weight="700" fill="#0ea5e9">
+      Service
+    </text>
+  </g>
+  
+  <!-- Tagline -->
+  <text x="48" y="44" font-family="Inter, sans-serif" font-size="8" font-weight="400" fill="#6b7280" letter-spacing="0.5">
+    PROFESSIONAL WEB MAINTENANCE
+  </text>
+</svg>

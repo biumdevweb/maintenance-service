@@ -1,0 +1,70 @@
+<!-- This is a placeholder for the JPG file. In a real implementation, this would be a binary JPG file. -->
+<!-- For now, we'll create the SVG version that can be converted to JPG -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630">
+  <!-- Background con gradiente -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1E3A8A" />
+      <stop offset="100%" style="stop-color:#0ea5e9" />
+    </linearGradient>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EA580C" />
+      <stop offset="100%" style="stop-color:#f97316" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="1200" height="630" fill="url(#bgGradient)"/>
+  
+  <!-- Content -->
+  <g transform="translate(600, 315)">
+    <!-- Icona grande -->
+    <g transform="scale(3)">
+      <!-- Shield esterno -->
+      <path d="M0 -40 L-33 -20 L-33 15 C-33 45 0 70 0 70 C0 70 33 45 33 15 L33 -20 Z" 
+            fill="white" opacity="0.95"/>
+      
+      <!-- Gear inside shield -->
+      <path d="M0 -13 L2.7 -11.4 L2.7 -8.2 L4.4 -6.5 L4.4 -3.3 L2.7 -1.6 L2.7 1.6 L0 3.2 L-2.7 1.6 L-2.7 -1.6 L-4.4 -3.3 L-4.4 -6.5 L-2.7 -8.2 L-2.7 -11.4 Z" 
+            fill="url(#iconGradient)"/>
+      
+      <!-- Center circle -->
+      <circle cx="0" cy="0" r="4" fill="white"/>
+      
+      <!-- Check mark -->
+      <path d="M-3 0 L-1.2 2 L3 -2.5" 
+            stroke="#1E3A8A" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+    </g>
+    
+    <!-- Title -->
+    <text y="120" text-anchor="middle" fill="white" font-size="56" font-weight="bold" font-family="Arial, sans-serif">
+      Manutenzione Siti Web Professionale
+    </text>
+    
+    <!-- Subtitle -->
+    <text y="170" text-anchor="middle" fill="white" font-size="32" font-family="Arial, sans-serif" opacity="0.9">
+      Servizi 24/7 per PMI Italiane
+    </text>
+    
+    <!-- Features -->
+    <g transform="translate(-250, 220)">
+      <circle cx="0" cy="0" r="6" fill="#10b981"/>
+      <text x="15" y="5" fill="white" font-size="24" font-family="Arial, sans-serif">Monitoraggio 24/7</text>
+    </g>
+    
+    <g transform="translate(50, 220)">
+      <circle cx="0" cy="0" r="6" fill="#10b981"/>
+      <text x="15" y="5" fill="white" font-size="24" font-family="Arial, sans-serif">Sicurezza Ottimizzata</text>
+    </g>
+    
+    <g transform="translate(-250, 260)">
+      <circle cx="0" cy="0" r="6" fill="#10b981"/>
+      <text x="15" y="5" fill="white" font-size="24" font-family="Arial, sans-serif">Backup Automatici</text>
+    </g>
+    
+    <g transform="translate(50, 260)">
+      <circle cx="0" cy="0" r="6" fill="#10b981"/>
+      <text x="15" y="5" fill="white" font-size="24" font-family="Arial, sans-serif">Supporto Tecnico</text>
+    </g>
+  </g>
+</svg>

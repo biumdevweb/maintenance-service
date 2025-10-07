@@ -1,0 +1,87 @@
+<svg width="375" height="667" viewBox="0 0 375 667" xmlns="http://www.w3.org/2000/svg">
+  <!-- Phone Frame -->
+  <rect width="375" height="667" rx="30" fill="#1f2937"/>
+  <rect x="10" y="10" width="355" height="647" rx="25" fill="#000000"/>
+  
+  <!-- Screen -->
+  <rect x="15" y="60" width="345" height="582" rx="20" fill="#ffffff"/>
+  
+  <!-- Status Bar -->
+  <rect x="15" y="60" width="345" height="25" rx="0" fill="#ffffff"/>
+  <text x="30" y="77" font-family="Arial, sans-serif" font-size="12" fill="#000000">9:41</text>
+  <rect x="320" y="70" width="30" height="5" rx="2" fill="#000000"/>
+  <rect x="320" y="78" width="20" height="5" rx="2" fill="#000000"/>
+  
+  <!-- Header -->
+  <rect x="15" y="85" width="345" height="60" fill="#1e3a8a"/>
+  <rect x="30" y="100" width="120" height="30" rx="6" fill="#ffffff" opacity="0.9"/>
+  <rect x="300" y="100" width="45" height="30" rx="6" fill="#ea580c"/>
+  
+  <!-- Hero Section -->
+  <rect x="15" y="145" width="345" height="200" fill="url(#heroGradient)"/>
+  <rect x="30" y="170" width="280" height="30" rx="6" fill="#ffffff" opacity="0.9"/>
+  <rect x="30" y="210" width="240" height="10" rx="3" fill="#ffffff" opacity="0.7"/>
+  <rect x="30" y="225" width="260" height="10" rx="3" fill="#ffffff" opacity="0.7"/>
+  <rect x="30" y="260" width="120" height="35" rx="6" fill="#ea580c"/>
+  <rect x="160" y="260" width="120" height="35" rx="6" fill="#ffffff" opacity="0.2" stroke="#ffffff" stroke-width="1"/>
+  
+  <!-- Dashboard Preview -->
+  <rect x="30" y="290" width="315" height="180" rx="8" fill="#ffffff" opacity="0.9"/>
+  <rect x="45" y="305" width="285" height="25" rx="4" fill="#e2e8f0"/>
+  <rect x="45" y="340" width="120" height="10" rx="3" fill="#cbd5e1"/>
+  <rect x="45" y="355" width="110" height="10" rx="3" fill="#cbd5e1"/>
+  <rect x="45" y="370" width="130" height="10" rx="3" fill="#cbd5e1"/>
+  <rect x="200" y="340" width="130" height="10" rx="3" fill="#10b981" opacity="0.7"/>
+  <rect x="200" y="355" width="120" height="10" rx="3" fill="#10b981" opacity="0.7"/>
+  <rect x="200" y="370" width="110" height="10" rx="3" fill="#10b981" opacity="0.7"/>
+  
+  <!-- Stats Cards -->
+  <rect x="45" y="395" width="70" height="50" rx="6" fill="#ffffff" opacity="0.9"/>
+  <rect x="125" y="395" width="70" height="50" rx="6" fill="#ffffff" opacity="0.9"/>
+  <rect x="205" y="395" width="70" height="50" rx="6" fill="#ffffff" opacity="0.9"/>
+  <rect x="285" y="395" width="70" height="50" rx="6" fill="#ffffff" opacity="0.9"/>
+  
+  <!-- Features Section -->
+  <rect x="15" y="355" width="345" height="280" fill="#ffffff"/>
+  <text x="30" y="380" font-family="Arial, sans-serif" font-size="16" font-weight="bold" fill="#1e3a8a">I nostri servizi</text>
+  
+  <!-- Feature Cards -->
+  <rect x="30" y="395" width="150" height="80" rx="8" fill="#f1f5f9"/>
+  <circle cx="60" cy="425" r="12" fill="#0ea5e9"/>
+  <rect x="80" y="415" width="80" height="6" rx="3" fill="#cbd5e1"/>
+  <rect x="80" y="425" width="90" height="6" rx="3" fill="#e2e8f0"/>
+  <rect x="80" y="435" width="85" height="6" rx="3" fill="#e2e8f0"/>
+  
+  <rect x="195" y="395" width="150" height="80" rx="8" fill="#f1f5f9"/>
+  <circle cx="225" cy="425" r="12" fill="#ea580c"/>
+  <rect x="245" y="415" width="80" height="6" rx="3" fill="#cbd5e1"/>
+  <rect x="245" y="425" width="90" height="6" rx="3" fill="#e2e8f0"/>
+  <rect x="245" y="435" width="85" height="6" rx="3" fill="#e2e8f0"/>
+  
+  <rect x="30" y="485" width="150" height="80" rx="8" fill="#f1f5f9"/>
+  <circle cx="60" cy="515" r="12" fill="#10b981"/>
+  <rect x="80" y="505" width="80" height="6" rx="3" fill="#cbd5e1"/>
+  <rect x="80" y="515" width="90" height="6" rx="3" fill="#e2e8f0"/>
+  <rect x="80" y="525" width="85" height="6" rx="3" fill="#e2e8f0"/>
+  
+  <rect x="195" y="485" width="150" height="80" rx="8" fill="#f1f5f9"/>
+  <circle cx="225" cy="515" r="12" fill="#8b5cf6"/>
+  <rect x="245" y="505" width="80" height="6" rx="3" fill="#cbd5e1"/>
+  <rect x="245" y="515" width="90" height="6" rx="3" fill="#e2e8f0"/>
+  <rect x="245" y="525" width="85" height="6" rx="3" fill="#e2e8f0"/>
+  
+  <!-- CTA Section -->
+  <rect x="15" y="585" width="345" height="50" fill="#f8fafc"/>
+  <rect x="60" y="600" width="255" height="20" rx="10" fill="#ea580c"/>
+  
+  <!-- Home Indicator -->
+  <rect x="160" y="640" width="55" height="4" rx="2" fill="#ffffff"/>
+  
+  <!-- Definitions -->
+  <defs>
+    <linearGradient id="heroGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1e3a8a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#0ea5e9;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>

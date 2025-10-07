@@ -1,0 +1,36 @@
+<!-- This is a placeholder for the PNG file. In a real implementation, this would be a binary PNG file. -->
+<!-- For now, we'll create the SVG version that can be converted to PNG -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192">
+  <!-- Background con gradiente -->
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1E3A8A" />
+      <stop offset="100%" style="stop-color:#0ea5e9" />
+    </linearGradient>
+    <linearGradient id="iconGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#EA580C" />
+      <stop offset="100%" style="stop-color:#f97316" />
+    </linearGradient>
+  </defs>
+  
+  <!-- Background rounded -->
+  <rect width="192" height="192" rx="32" fill="url(#bgGradient)"/>
+  
+  <!-- Icona principale: shield con gear -->
+  <g transform="translate(96, 96)">
+    <!-- Shield esterno -->
+    <path d="M0 -44 L-38 -22 L-38 16 C-38 48 0 74 0 74 C0 74 38 48 38 16 L38 -22 Z" 
+          fill="white" opacity="0.95"/>
+    
+    <!-- Gear inside shield -->
+    <path d="M0 -14 L3.2 -12.2 L3.2 -8.6 L5.8 -6.6 L5.8 -3.4 L3.2 -1.6 L3.2 1.6 L0 3.2 L-3.2 1.6 L-3.2 -1.6 L-5.8 -3.4 L-5.8 -6.6 L-3.2 -8.6 L-3.2 -12.2 Z" 
+          fill="url(#iconGradient)"/>
+    
+    <!-- Center circle -->
+    <circle cx="0" cy="0" r="4.8" fill="white"/>
+    
+    <!-- Check mark -->
+    <path d="M-3.2 0 L-1.2 2 L3.2 -2.6" 
+          stroke="#1E3A8A" stroke-width="1.2" fill="none" stroke-linecap="round"/>
+  </g>
+</svg>

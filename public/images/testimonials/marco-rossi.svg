@@ -1,0 +1,16 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Avatar professionale per Marco Rossi - Manufacturing -->
+  <circle cx="40" cy="40" r="40" fill="#f1f5f9"/>
+  
+  <!-- Head -->
+  <circle cx="40" cy="30" r="12" fill="#fbbf24"/>
+  
+  <!-- Body -->
+  <path d="M25 50C25 45 30 40 40 40C50 40 55 45 55 50L55 65L25 65Z" fill="#1E3A8A"/>
+  
+  <!-- Tie -->
+  <path d="M38 40L40 50L42 40Z" fill="#EA580C"/>
+  
+  <!-- Name initials -->
+  <text x="40" y="35" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">MR</text>
+</svg>

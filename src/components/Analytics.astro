@@ -1,0 +1,528 @@
+---
+// Analytics component per B2B tracking ottimizzato
+interface Props {
+  measurementId?: string;
+  gtmId?: string;
+  hotjarId?: string;
+  linkedinId?: string;
+  facebookPixelId?: string;
+}
+
+const { 
+  measurementId = 'G-XXXXXXXXXX', 
+  gtmId = 'GTM-XXXXXXX',
+  hotjarId = '123456',
+  linkedinId = '1234567',
+  facebookPixelId = '1234567890123456'
+} = Astro.props;
+---
+
+<!-- Google Analytics 4 -->
+<script>
+  // Initialize dataLayer
+  window.dataLayer = window.dataLayer || [];
+  
+  // GDPR consent management
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  
+  // Set default consent state (will be updated by GDPR manager)
+  gtag('consent', 'default', {
+    'ad_storage': 'denied',
+    'analytics_storage': 'denied',
+    'personalization_storage': 'denied',
+    'functionality_storage': 'granted',
+    'security_storage': 'granted',
+    'wait_for_update': 500
+  });
+  
+  // Load GA4
+  gtag('js', new Date());
+  gtag('config', '{measurementId}', {
+    'anonymize_ip': true,
+    'cookie_flags': 'SameSite=None;Secure',
+    'custom_map': {
+      'custom_parameter_1': 'lead_score',
+      'custom_parameter_2': 'company_size',
+      'custom_parameter_3': 'industry',
+      'custom_parameter_4': 'pricing_tier',
+      'custom_parameter_5': 'user_type'
+    }
+  });
+  
+  // Enhanced ecommerce tracking
+  gtag('config', '{measurementId}', {
+    'currency': 'EUR',
+    'send_page_view': false
+  });
+  
+  // Listen for GDPR consent events
+  document.addEventListener('gdpr-consent', function(e) {
+    const consent = e.detail;
+    
+    gtag('consent', 'update', {
+      'ad_storage': consent.marketing ? 'granted' : 'denied',
+      'analytics_storage': consent.analytics ? 'granted' : 'denied',
+      'personalization_storage': consent.personalization ? 'granted' : 'denied'
+    });
+    
+    // Send page view after consent
+    if (consent.analytics) {
+      gtag('event', 'page_view', {
+        page_title: document.title,
+        page_location: window.location.href
+      });
+    }
+  });
+  
+  // Custom B2B tracking functions
+  window.b2bAnalytics = {
+    // Track lead generation
+    trackLead: function(leadData, leadScore) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'generate_lead', {
+          'event_category': 'lead_generation',
+          'event_label': leadData.source || 'landing_page',
+          'value': leadScore.estimatedValue || 0,
+          'currency': 'EUR',
+          'custom_parameter_1': leadScore.total.toString(),
+          'custom_parameter_2': leadData.employees || '',
+          'custom_parameter_3': leadData.industry || '',
+          'custom_parameter_5': leadData.role || ''
+        });
+      }
+    },
+    
+    // Track pricing calculator usage
+    trackPricingCalculator: function(calculatorData) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'pricing_calculator', {
+          'event_category': 'engagement',
+          'event_label': 'pricing_calculation',
+          'value': calculatorData.totalPrice,
+          'currency': 'EUR',
+          'custom_parameter_2': calculatorData.companySize || '',
+          'custom_parameter_4': calculatorData.selectedTier || ''
+        });
+      }
+    },
+    
+    // Track consultation booking
+    trackConsultation: function(bookingData) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'book_consultation', {
+          'event_category': 'conversion',
+          'event_label': bookingData.type || 'phone_consultation',
+          'value': 150,
+          'currency': 'EUR'
+        });
+      }
+    },
+    
+    // Track CTA clicks
+    trackCTAClick: function(ctaData) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'cta_click', {
+          'event_category': 'engagement',
+          'event_label': ctaData.text || 'unknown_cta',
+          'custom_parameter_5': ctaData.location || 'unknown'
+        });
+      }
+    },
+    
+    // Track scroll depth
+    trackScrollDepth: function(depth) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'scroll', {
+          'event_category': 'engagement',
+          'event_label': depth + '%',
+          'non_interaction': true
+        });
+      }
+    },
+    
+    // Track form interactions
+    trackFormInteraction: function(formData) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'form_interaction', {
+          'event_category': 'engagement',
+          'event_label': formData.formName || 'unknown_form',
+          'custom_parameter_5': formData.action || 'unknown'
+        });
+      }
+    },
+    
+    // Track FAQ interactions
+    trackFAQView: function(faqData) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'faq_view', {
+          'event_category': 'engagement',
+          'event_label': faqData.question || 'unknown_faq',
+          'custom_parameter_3': faqData.category || 'unknown'
+        });
+      }
+    },
+    
+    // Track pricing tier views
+    trackPricingTierView: function(tierData) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'view_pricing_tier', {
+          'event_category': 'engagement',
+          'event_label': tierData.name || 'unknown_tier',
+          'value': tierData.price || 0,
+          'currency': 'EUR',
+          'custom_parameter_4': tierData.id || ''
+        });
+      }
+    },
+    
+    // Track testimonianze interactions
+    trackTestimonialView: function(testimonialData) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'view_testimonial', {
+          'event_category': 'engagement',
+          'event_label': testimonialData.company || 'unknown_company',
+          'custom_parameter_2': testimonialData.companySize || '',
+          'custom_parameter_3': testimonialData.industry || ''
+        });
+      }
+    },
+    
+    // Track time on page
+    trackTimeOnPage: function(timeOnPage) {
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'time_on_page', {
+          'event_category': 'engagement',
+          'event_label': Math.floor(timeOnPage / 1000) + 's',
+          'value': Math.floor(timeOnPage / 1000),
+          'non_interaction': true
+        });
+      }
+    }
+  };
+</script>
+
+<!-- Google Tag Manager -->
+<script>
+  // GTM dataLayer
+  window.dataLayer = window.dataLayer || [];
+  
+  // GTM initialization (will be loaded based on consent)
+  function loadGTM() {
+    (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','{gtmId}');
+  }
+  
+  // Listen for GDPR consent to load GTM
+  document.addEventListener('gdpr-consent', function(e) {
+    if (e.detail.analytics || e.detail.marketing) {
+      loadGTM();
+    }
+  });
+</script>
+
+<!-- Hotjar Heatmaps & Recordings -->
+<script>
+  function loadHotjar() {
+    (function(h,o,t,j,a,r){
+      h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+      h._hjSettings={hjid:{hotjarId},hjsv:6};
+      a=o.getElementsByTagName('head')[0];
+      r=o.createElement('script');r.async=1;
+      r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+      a.appendChild(r);
+    })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+  }
+  
+  // Listen for GDPR consent to load Hotjar
+  document.addEventListener('gdpr-consent', function(e) {
+    if (e.detail.analytics) {
+      loadHotjar();
+    }
+  });
+</script>
+
+<!-- LinkedIn Insight Tag -->
+<script>
+  function loadLinkedInInsight() {
+    _linkedin_partner_id = "{linkedinId}";
+    window._linkedin_data_partner_ids = window._linkedin_data_partner_ids || [];
+    window._linkedin_data_partner_ids.push(_linkedin_partner_id);
+    
+    (function(l) {
+      if (!l){window.lintrk = function(a,b){window.lintrk.q.push([a,b])};
+      window.lintrk.q=[]}
+      var s = document.getElementsByTagName("script")[0];
+      var b = document.createElement("script");
+      b.type = "text/javascript";b.async = true;
+      b.src = "https://snap.licdn.com/li.lms-analytics/insight.min.js";
+      s.parentNode.insertBefore(b, s);})(window.lintrk);
+  }
+  
+  // Listen for GDPR consent to load LinkedIn
+  document.addEventListener('gdpr-consent', function(e) {
+    if (e.detail.marketing) {
+      loadLinkedInInsight();
+    }
+  });
+</script>
+
+<!-- Facebook Pixel -->
+<script>
+  function loadFacebookPixel() {
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '{facebookPixelId}');
+    fbq('track', 'PageView');
+  }
+  
+  // Listen for GDPR consent to load Facebook Pixel
+  document.addEventListener('gdpr-consent', function(e) {
+    if (e.detail.marketing) {
+      loadFacebookPixel();
+    }
+  });
+</script>
+
+<!-- Custom B2B Analytics Events -->
+<script>
+  // Initialize B2B analytics tracking
+  document.addEventListener('DOMContentLoaded', function() {
+    // Track scroll depth
+    let maxScroll = 0;
+    let scrollTracked = [25, 50, 75, 90];
+    
+    window.addEventListener('scroll', function() {
+      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = Math.round((scrollTop / scrollHeight) * 100);
+      
+      if (scrollPercent > maxScroll) {
+        maxScroll = scrollPercent;
+        
+        // Track milestones
+        scrollTracked.forEach(milestone => {
+          if (scrollPercent >= milestone && !window['tracked_' + milestone]) {
+            window['tracked_' + milestone] = true;
+            window.b2bAnalytics.trackScrollDepth(milestone);
+          }
+        });
+      }
+    });
+    
+    // Track time on page
+    let startTime = Date.now();
+    let timeTracked = [30, 60, 120, 300]; // seconds
+    
+    setInterval(function() {
+      const timeOnPage = Math.floor((Date.now() - startTime) / 1000);
+      
+      timeTracked.forEach(seconds => {
+        if (timeOnPage >= seconds && !window['time_tracked_' + seconds]) {
+          window['time_tracked_' + seconds] = true;
+          window.b2bAnalytics.trackTimeOnPage(seconds * 1000);
+        }
+      });
+    }, 5000);
+    
+    // Track CTA clicks
+    document.querySelectorAll('a[href^="#"], .btn').forEach(function(element) {
+      element.addEventListener('click', function() {
+        const text = this.textContent.trim();
+        const location = this.closest('section')?.id || 'unknown';
+        
+        window.b2bAnalytics.trackCTAClick({
+          text: text,
+          location: location
+        });
+      });
+    });
+    
+    // Track form interactions
+    document.querySelectorAll('form').forEach(function(form) {
+      const formName = form.id || form.className || 'unknown_form';
+      
+      // Track form start
+      form.addEventListener('focus', function() {
+        if (!form.dataset.tracked) {
+          form.dataset.tracked = 'true';
+          window.b2bAnalytics.trackFormInteraction({
+            formName: formName,
+            action: 'start'
+          });
+        }
+      }, true);
+      
+      // Track form submission
+      form.addEventListener('submit', function() {
+        window.b2bAnalytics.trackFormInteraction({
+          formName: formName,
+          action: 'submit'
+        });
+      });
+    });
+    
+    // Track FAQ interactions
+    document.querySelectorAll('[onclick*="toggleFAQ"]').forEach(function(element) {
+      element.addEventListener('click', function() {
+        const question = this.querySelector('h3')?.textContent.trim() || 'unknown';
+        const category = 'general'; // Would need to be determined dynamically
+        
+        window.b2bAnalytics.trackFAQView({
+          question: question,
+          category: category
+        });
+      });
+    });
+    
+    // Track pricing tier views
+    document.querySelectorAll('.card').forEach(function(card) {
+      // Check if this is a pricing card
+      if (card.textContent.includes('€') && card.textContent.includes('/mese')) {
+        const observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              const tierName = card.querySelector('h3')?.textContent.trim() || 'unknown';
+              const tierPrice = card.querySelector('.text-4xl')?.textContent.trim() || '0';
+              
+              window.b2bAnalytics.trackPricingTierView({
+                name: tierName,
+                price: parseInt(tierPrice.replace(/[^0-9]/g, '')),
+                id: tierName.toLowerCase().replace(/\s+/g, '-')
+              });
+              
+              observer.unobserve(card);
+            }
+          });
+        }, { threshold: 0.5 });
+        
+        observer.observe(card);
+      }
+    });
+    
+    // Track testimonianze views
+    document.querySelectorAll('.card').forEach(function(card) {
+      // Check if this is a testimonial card
+      if (card.querySelector('blockquote')) {
+        const observer = new IntersectionObserver(function(entries) {
+          entries.forEach(function(entry) {
+            if (entry.isIntersecting) {
+              const company = card.querySelector('.text-gray-600')?.textContent.split(',').pop()?.trim() || 'unknown';
+              const companySize = card.querySelector('.text-xs')?.textContent || '';
+              const industry = 'unknown'; // Would need to be determined dynamically
+              
+              window.b2aAnalytics.trackTestimonialView({
+                company: company,
+                companySize: companySize,
+                industry: industry
+              });
+              
+              observer.unobserve(card);
+            }
+          });
+        }, { threshold: 0.5 });
+        
+        observer.observe(card);
+      }
+    });
+  });
+</script>
+
+<!-- NoScript fallbacks -->
+<noscript>
+  <!-- Google Tag Manager NoScript -->
+  <iframe 
+    src="https://www.googletagmanager.com/ns.html?id={gtmId}" 
+    height="0" 
+    width="0" 
+    style="display:none;visibility:hidden"
+  ></iframe>
+  
+  <!-- Facebook Pixel NoScript -->
+  <img 
+    height="1" 
+    width="1" 
+    style="display:none"
+    src="https://www.facebook.com/tr?id={facebookPixelId}&ev=PageView&noscript=1"
+  />
+  
+  <!-- LinkedIn NoScript -->
+  <img 
+    height="1" 
+    width="1" 
+    style="display:none;" 
+    alt="" 
+    src="https://px.ads.linkedin.com/collect/?pid={linkedinId}&fmt=gif"
+  />
+</noscript>
+
+<!-- Schema.org structured data for B2B -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ProfessionalService",
+  "name": "Maintenance Service",
+  "description": "Servizi professionali di manutenzione siti web per PMI italiane",
+  "url": "https://maintenance-service.vercel.app",
+  "telephone": "+39-02-12345678",
+  "address": {
+    "@type": "PostalAddress",
+    "addressCountry": "IT",
+    "addressLocality": "Milano",
+    "addressRegion": "MI",
+    "postalCode": "20121",
+    "streetAddress": "Via Roma 1"
+  },
+  "geo": {
+    "@type": "GeoCoordinates",
+    "latitude": "45.4642",
+    "longitude": "9.1900"
+  },
+  "openingHours": "Mo-Fr 09:00-18:00",
+  "priceRange": "€79-€599",
+  "serviceType": "Website Maintenance",
+  "provider": {
+    "@type": "Organization",
+    "name": "Maintenance Service",
+    "logo": "https://maintenance-service.vercel.app/images/logo.png"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "4.8",
+    "reviewCount": "127"
+  },
+  "review": [
+    {
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": "Marco Rossi"
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": "5"
+      },
+      "reviewBody": "Servizio eccellente, hanno risolto tutti i problemi del nostro sito.",
+      "publisher": {
+        "@type": "Organization",
+        "name": "Maintenance Service"
+      }
+    }
+  ],
+  "sameAs": [
+    "https://www.facebook.com/maintenanceservice",
+    "https://www.linkedin.com/company/maintenanceservice",
+    "https://twitter.com/maintenanceservice"
+  ]
+}
+</script>

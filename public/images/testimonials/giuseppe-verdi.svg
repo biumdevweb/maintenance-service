@@ -1,0 +1,21 @@
+<svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+  <!-- Avatar professionale per Giuseppe Verdi - Hospitality -->
+  <circle cx="40" cy="40" r="40" fill="#f0fdf4"/>
+  
+  <!-- Head -->
+  <circle cx="40" cy="30" r="12" fill="#fbbf24"/>
+  
+  <!-- Hair -->
+  <path d="M28 25C28 20 32 18 40 18C48 18 52 20 52 25L52 30C52 32 50 34 48 34L32 34C30 34 28 32 28 30Z" fill="#374151"/>
+  
+  <!-- Body with hotel uniform -->
+  <path d="M25 50C25 45 30 40 40 40C50 40 55 45 55 50L55 65L25 65Z" fill="#22c55e"/>
+  
+  <!-- Uniform details -->
+  <rect x="35" y="45" width="10" height="4" rx="1" fill="white"/>
+  <circle cx="37" cy="53" r="1" fill="white"/>
+  <circle cx="43" cy="53" r="1" fill="white"/>
+  
+  <!-- Name initials -->
+  <text x="40" y="35" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="white" text-anchor="middle">GV</text>
+</svg>

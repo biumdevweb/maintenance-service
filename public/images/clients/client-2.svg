@@ -1,0 +1,14 @@
+<svg width="120" height="60" viewBox="0 0 120 60" xmlns="http://www.w3.org/2000/svg">
+  <!-- BellaModa - Logo azienda moda -->
+  <rect width="120" height="60" fill="#fef2f2" rx="8"/>
+  
+  <!-- Icon - Fashion hanger -->
+  <path d="M20 20C20 20 20 24 20 26C20 28 22 30 24 30C26 30 28 28 28 26C28 24 28 20 28 20" 
+        stroke="#EA580C" stroke-width="1.5" fill="none"/>
+  <path d="M16 20L32 20" stroke="#EA580C" stroke-width="1.5"/>
+  <circle cx="24" cy="35" r="2" fill="#EA580C"/>
+  
+  <!-- Text -->
+  <text x="35" y="25" font-family="Inter, sans-serif" font-size="10" font-weight="700" fill="#EA580C">Bella</text>
+  <text x="35" y="35" font-family="Inter, sans-serif" font-size="8" fill="#64748b">Moda</text>
+</svg>

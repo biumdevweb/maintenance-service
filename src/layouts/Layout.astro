@@ -1,0 +1,444 @@
+---
+import '../styles/global.css'
+import GDPRBanner from '../components/GDPRBanner.astro'
+import Analytics from '../components/Analytics.astro'
+
+export interface Props {
+	title: string;
+	description: string;
+	image?: string;
+	noIndex?: boolean;
+}
+
+const { title, description, image = "/images/og-default.jpg", noIndex = false } = Astro.props;
+
+// Open Graph metadata ottimizzati per B2B italiano
+const ogImage = new URL(image, Astro.site).href;
+const canonicalURL = new URL(Astro.url.pathname, Astro.site).href;
+---
+
+<!DOCTYPE html>
+<html lang="it" class="scroll-smooth">
+<head>
+	<!-- Meta tags base -->
+	<meta charset="UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link rel="canonical" href={canonicalURL} />
+	
+	<!-- SEO Meta tags -->
+	<title>{title}</title>
+	<meta name="description" content={description} />
+	<meta name="author" content="Maintenance Service" />
+	<meta name="keywords" content="manutenzione siti web, assistenza wordpress, sicurezza siti web, hosting professionale, PMI italia" />
+	
+	<!-- Robots meta -->
+	{noIndex && <meta name="robots" content="noindex, nofollow" />}
+	{!noIndex && <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />}
+	
+	<!-- Open Graph / Facebook -->
+	<meta property="og:type" content="website" />
+	<meta property="og:url" content={canonicalURL} />
+	<meta property="og:title" content={title} />
+	<meta property="og:description" content={description} />
+	<meta property="og:image" content={ogImage} />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:locale" content="it_IT" />
+	
+	<!-- Twitter Card -->
+	<meta property="twitter:card" content="summary_large_image" />
+	<meta property="twitter:url" content={canonicalURL} />
+	<meta property="twitter:title" content={title} />
+	<meta property="twitter:description" content={description} />
+	<meta property="twitter:image" content={ogImage} />
+	
+	<!-- Preload font ottimizzati per performance -->
+	<link rel="preload" href="/fonts/inter-v12-latin-700.woff2" as="font" type="font/woff2" crossorigin />
+	<link rel="preload" href="/fonts/lato-v23-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+	<link rel="preload" href="/fonts/roboto-mono-v23-latin-regular.woff2" as="font" type="font/woff2" crossorigin />
+	
+	<!-- Font imports con font-display swap -->
+	<style>
+		/* Inter - Headers e CTA */
+		@font-face {
+			font-family: 'Inter';
+			font-style: normal;
+			font-weight: 700;
+			font-display: swap;
+			src: url('/fonts/inter-v12-latin-700.woff2') format('woff2');
+		}
+		
+		/* Lato - Body text */
+		@font-face {
+			font-family: 'Lato';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url('/fonts/lato-v23-latin-regular.woff2') format('woff2');
+		}
+		
+		/* Roboto Mono - Numbers e technical specs */
+		@font-face {
+			font-family: 'Roboto Mono';
+			font-style: normal;
+			font-weight: 400;
+			font-display: swap;
+			src: url('/fonts/roboto-mono-v23-latin-regular.woff2') format('woff2');
+		}
+		
+		/* Critical CSS inline per performance */
+		:root {
+			--color-navy-700: #1E3A8A;
+			--color-sky-500: #0ea5e9;
+			--color-orange-600: #EA580C;
+			--color-gray-700: #374151;
+		}
+		
+		/* Prevent FOUC */
+		body {
+			font-family: 'Lato', system-ui, -apple-system, sans-serif;
+			color: var(--color-gray-700);
+			background: white;
+		}
+		
+		h1, h2, h3, h4, h5, h6 {
+			font-family: 'Inter', system-ui, -apple-system, sans-serif;
+			font-weight: 700;
+		}
+		
+		/* Smooth scrolling */
+		html {
+			scroll-behavior: smooth;
+		}
+		
+		/* Focus styles per accessibility */
+		*:focus {
+			outline: 2px solid var(--color-sky-500);
+			outline-offset: 2px;
+		}
+		
+		/* Selection color */
+		::selection {
+			background-color: var(--color-sky-500);
+			color: white;
+		}
+	</style>
+	
+	<!-- Tailwind CSS è già importato tramite @astrojs/tailwind -->
+	
+	<!-- Favicon -->
+	<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+	<link rel="icon" type="image/png" href="/favicon.png" />
+	
+	<!-- Apple touch icon -->
+	<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+	
+	<!-- Manifest per PWA -->
+	<link rel="manifest" href="/site.webmanifest" />
+	
+	<!-- DNS prefetch per risorse esterne -->
+	<link rel="dns-prefetch" href="//fonts.googleapis.com" />
+	<link rel="dns-prefetch" href="//www.googletagmanager.com" />
+	
+	<!-- Preconnect per risorse critiche -->
+	<link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
+	
+	<!-- Schema.org structured data per B2B -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "ProfessionalService",
+		"name": "Maintenance Service",
+		"description": "Servizi professionali di manutenzione siti web per PMI italiane",
+		"url": "https://maintenance-service.vercel.app",
+		"telephone": "+39-02-12345678",
+		"address": {
+			"@type": "PostalAddress",
+			"addressCountry": "IT",
+			"addressLocality": "Milano",
+			"addressRegion": "MI"
+		},
+		"geo": {
+			"@type": "GeoCoordinates",
+			"latitude": "45.4642",
+			"longitude": "9.1900"
+		},
+		"openingHours": "Mo-Fr 09:00-18:00",
+		"priceRange": "€79-€599",
+		"serviceType": "Website Maintenance",
+		"provider": {
+			"@type": "Organization",
+			"name": "Maintenance Service"
+		}
+	}
+	</script>
+</head>
+<body class="antialiased">
+	<!-- Skip to content per accessibility -->
+	<a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 bg-sky-500 text-white px-4 py-2 rounded">
+		Vai al contenuto principale
+	</a>
+	
+	<!-- Header navigation -->
+	<header class="fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-md border-b border-gray-200">
+		<nav class="container mx-auto px-4 sm:px-6 lg:px-8">
+			<div class="flex items-center justify-between h-16">
+				<!-- Logo -->
+				<div class="flex items-center">
+					<a href="/" class="flex items-center space-x-3">
+						<div class="w-8 h-8 bg-gradient-navy rounded-lg flex items-center justify-center">
+							<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+							</svg>
+						</div>
+						<span class="text-xl font-bold text-navy-700">Maintenance Service</span>
+					</a>
+				</div>
+				
+				<!-- Desktop navigation -->
+				<div class="hidden md:flex items-center space-x-8">
+					<a href="#servizi" class="text-gray-700 hover:text-navy-700 transition-colors duration-200">Servizi</a>
+					<a href="#prezzi" class="text-gray-700 hover:text-navy-700 transition-colors duration-200">Prezzi</a>
+					<a href="#testimonianze" class="text-gray-700 hover:text-navy-700 transition-colors duration-200">Testimonianze</a>
+					<a href="#contatti" class="text-gray-700 hover:text-navy-700 transition-colors duration-200">Contatti</a>
+				</div>
+				
+				<!-- CTA Button -->
+				<div class="hidden md:block">
+					<a 
+						href="#audit-gratuito" 
+						class="bg-orange-600 text-white px-6 py-2.5 rounded-lg font-semibold hover:bg-orange-700 transform hover:-translate-y-0.5 transition-all duration-200 shadow-cta hover:shadow-cta-hover"
+					>
+						Audit Gratuito
+					</a>
+				</div>
+				
+				<!-- Mobile menu button -->
+				<div class="md:hidden">
+					<button 
+						type="button" 
+						class="text-gray-700 hover:text-navy-700 p-2 rounded-lg hover:bg-gray-100 transition-colors duration-200"
+						aria-label="Menu principale"
+					>
+						<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+							<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+						</svg>
+					</button>
+				</div>
+			</div>
+		</nav>
+	</header>
+	
+	<!-- Main content -->
+	<main id="main-content">
+		<slot />
+	</main>
+	
+	<!-- Footer -->
+	<footer class="bg-gray-900 text-white">
+		<div class="container mx-auto px-4 sm:px-6 lg:px-8 py-12">
+			<div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+				<!-- Company info -->
+				<div class="col-span-1 md:col-span-2">
+					<div class="flex items-center space-x-3 mb-4">
+						<div class="w-8 h-8 bg-gradient-navy rounded-lg flex items-center justify-center">
+							<svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z"/>
+							</svg>
+						</div>
+						<span class="text-xl font-bold">Maintenance Service</span>
+					</div>
+					<p class="text-gray-400 mb-4">
+						Servizi professionali di manutenzione siti web per PMI italiane. 
+						Proteggiamo il tuo business online 24/7 con monitoraggio proattivo e interventi rapidi.
+					</p>
+					<div class="flex space-x-4">
+						<a href="#" class="text-gray-400 hover:text-white transition-colors">
+							<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+							</svg>
+						</a>
+						<a href="#" class="text-gray-400 hover:text-white transition-colors">
+							<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M23.953 4.57a10 10 0 01-2.825.775 4.958 4.958 0 002.163-2.723c-.951.555-2.005.959-3.127 1.184a4.92 4.92 0 00-8.384 4.482C7.69 8.095 4.067 6.13 1.64 3.162a4.822 4.822 0 00-.666 2.475c0 1.71.87 3.213 2.188 4.096a4.904 4.904 0 01-2.228-.616v.06a4.923 4.923 0 003.946 4.827 4.996 4.996 0 01-2.212.085 4.936 4.936 0 004.604 3.417 9.867 9.867 0 01-6.102 2.105c-.39 0-.779-.023-1.17-.067a13.995 13.995 0 007.557 2.209c9.053 0 13.998-7.496 13.998-13.985 0-.21 0-.42-.015-.63A9.935 9.935 0 0024 4.59z"/>
+							</svg>
+						</a>
+						<a href="#" class="text-gray-400 hover:text-white transition-colors">
+							<svg class="w-6 h-6" fill="currentColor" viewBox="0 0 24 24">
+								<path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+							</svg>
+						</a>
+					</div>
+				</div>
+				
+				<!-- Quick links -->
+				<div>
+					<h3 class="text-lg font-semibold mb-4">Servizi</h3>
+					<ul class="space-y-2">
+						<li><a href="#servizi" class="text-gray-400 hover:text-white transition-colors">Manutenzione WordPress</a></li>
+						<li><a href="#servizi" class="text-gray-400 hover:text-white transition-colors">Monitoraggio 24/7</a></li>
+						<li><a href="#servizi" class="text-gray-400 hover:text-white transition-colors">Backup Automatici</a></li>
+						<li><a href="#servizi" class="text-gray-400 hover:text-white transition-colors">Ottimizzazione Performance</a></li>
+					</ul>
+				</div>
+				
+				<!-- Contact -->
+				<div>
+					<h3 class="text-lg font-semibold mb-4">Contatti</h3>
+					<ul class="space-y-2 text-gray-400">
+						<li class="flex items-center space-x-2">
+							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z"/>
+								<path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"/>
+							</svg>
+							<span>info@maintenance-service.it</span>
+						</li>
+						<li class="flex items-center space-x-2">
+							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+								<path d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z"/>
+							</svg>
+							<span>+39 02 12345678</span>
+						</li>
+						<li class="flex items-center space-x-2">
+							<svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
+								<path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd"/>
+							</svg>
+							<span>Milano, Italia</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+			
+			<!-- Bottom bar -->
+			<div class="border-t border-gray-800 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center">
+				<p class="text-gray-400 text-sm">
+					© 2024 Maintenance Service. Tutti i diritti riservati.
+				</p>
+				<div class="flex space-x-6 mt-4 md:mt-0">
+					<a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Privacy Policy</a>
+					<a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Cookie Policy</a>
+					<a href="#" class="text-gray-400 hover:text-white text-sm transition-colors">Termini di Servizio</a>
+				</div>
+			</div>
+		</div>
+	</footer>
+	
+	<!-- GDPR Banner Component -->
+	<GDPRBanner />
+	
+	<!-- Analytics Component -->
+	<Analytics />
+	
+	<!-- Service Worker Registration -->
+	<script>
+		// Register service worker for PWA functionality
+		if ('serviceWorker' in navigator) {
+			window.addEventListener('load', () => {
+				navigator.serviceWorker.register('/sw.js')
+					.then((registration) => {
+						console.log('SW registered: ', registration);
+						
+						// Check for updates
+						registration.addEventListener('updatefound', () => {
+							const newWorker = registration.installing;
+							if (newWorker) {
+								newWorker.addEventListener('statechange', () => {
+									if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+										// New content is available
+										if (confirm('Nuova versione disponibile. Ricaricare la pagina?')) {
+											window.location.reload();
+										}
+									}
+								});
+							}
+						});
+					})
+					.catch((registrationError) => {
+						console.log('SW registration failed: ', registrationError);
+					});
+			});
+		}
+		
+		// Performance monitoring
+		if ('PerformanceObserver' in window) {
+			// Monitor Core Web Vitals
+			const vitalsObserver = new PerformanceObserver((list) => {
+				for (const entry of list.getEntries()) {
+					// Send vitals to analytics
+					if ((window as any).gtag) {
+						switch (entry.name) {
+							case 'CLS':
+								(window as any).gtag('event', 'CLS', {
+									event_category: 'Web Vitals',
+									value: Math.round((entry as any).value * 1000)
+								});
+								break;
+							case 'FID':
+								(window as any).gtag('event', 'FID', {
+									event_category: 'Web Vitals',
+									value: Math.round((entry as any).value)
+								});
+								break;
+							case 'LCP':
+								(window as any).gtag('event', 'LCP', {
+									event_category: 'Web Vitals',
+									value: Math.round((entry as any).value)
+								});
+								break;
+						}
+					}
+				}
+			});
+			
+			vitalsObserver.observe({ entryTypes: ['largest-contentful-paint', 'first-input', 'layout-shift'] });
+		}
+		
+		// Lazy loading for images
+		if ('IntersectionObserver' in window) {
+			const imageObserver = new IntersectionObserver((entries) => {
+				entries.forEach(entry => {
+					if (entry.isIntersecting) {
+						const img = entry.target as HTMLImageElement;
+						if (img.dataset.src) {
+							img.src = img.dataset.src;
+							img.classList.remove('lazy');
+							imageObserver.unobserve(img);
+						}
+					}
+				});
+			});
+			
+			document.querySelectorAll('img[data-src]').forEach(img => {
+				imageObserver.observe(img);
+			});
+		}
+		
+		// Preload critical resources
+		function preloadResource(url: string, as: string, type = '') {
+			const link = document.createElement('link');
+			link.rel = 'preload';
+			link.href = url;
+			link.as = as;
+			if (type) link.type = type;
+			document.head.appendChild(link);
+		}
+		
+		// Preload critical pages on hover
+		document.querySelectorAll('a[href^="/"]').forEach(link => {
+			const anchor = link as HTMLAnchorElement;
+			anchor.addEventListener('mouseenter', () => {
+				preloadResource(anchor.href, 'document');
+			}, { once: true });
+		});
+		
+		// Smooth scroll behavior polyfill
+		if (!('scrollBehavior' in document.documentElement.style)) {
+			import('smoothscroll-polyfill').then((module: any) => {
+				module.polyfill();
+			}).catch(error => {
+				console.warn('Failed to load smoothscroll-polyfill:', error);
+			});
+		}
+	</script>
+</body>
+</html>
