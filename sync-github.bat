@@ -41,14 +41,22 @@ echo.
 
 :: Crea un commit con timestamp automatico
 echo 3. Creazione commit...
-for /f "tokens=2 delims==" %%a in ('wmic OS Get localdatetime /value') do set "dt=%%a"
-set "YYYY=%dt:~0,4%"
-set "MM=%dt:~4,2%"
-set "DD=%dt:~6,2%"
-set "HH=%dt:~8,2%"
-set "Min=%dt:~10,2%"
-set "Sec=%dt:~12,2%"
-set "timestamp=%YYYY%-%MM%-%DD% %HH%:%Min%:%Sec%"
+:: Utilizzo del comando date e time come alternativa a wmic
+for /f "tokens=2 delims==" %%I in ('wmic os get localdatetime /value') do set "dt=%%I" 2>nul
+if "%dt%"=="" (
+    :: Metodo alternativo se wmic non è disponibile
+    for /f "tokens=1-3 delims=/ " %%a in ('date /t') do set "dt=%%c-%%a-%%b"
+    for /f "tokens=1-2 delims=: " %%a in ('time /t') do set "tm=%%a:%%b"
+    set "timestamp=%dt% %tm%"
+) else (
+    set "YYYY=%dt:~0,4%"
+    set "MM=%dt:~4,2%"
+    set "DD=%dt:~6,2%"
+    set "HH=%dt:~8,2%"
+    set "Min=%dt:~10,2%"
+    set "Sec=%dt:~12,2%"
+    set "timestamp=%YYYY%-%MM%-%DD% %HH%:%Min%:%Sec%"
+)
 
 git commit -m "Auto-sync %timestamp% - Aggiornamento maintenance service"
 echo.
